@@ -1,0 +1,43 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "useDefineForClassFields": true,
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "strict": true,
+        "jsx": "preserve",
+        "sourceMap": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "esModuleInterop": true,
+        "allowJs": true,
+        "lib": ["ESNext", "DOM"],
+        "skipLibCheck": true,
+        "paths": {
+            "@/*": ["./src/*"]
+        },
+        "types": ["unplugin-vue-define-options", "vite/client"],
+        // 是否开启严格模式
+        "strictNullChecks": false,
+        // 素隐式具有 “any“ 类型，因为类型为 “string“ 的表达式不能用于索引类型
+        "suppressImplicitAnyIndexErrors": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
+        "noImplicitAny": false,
+        "importsNotUsedAsValues": "preserve"
+    },
+    "include": [
+        "*.ts",
+        "types/**/*.d.ts",
+        "src/**/*.ts",
+        "src/**/*.d.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+        "login/**/*.ts",
+        "login/**/*.d.ts",
+        "login/**/*.tsx",
+        "login/**/*.vue"
+    ],
+    "references": [{ "path": "./tsconfig.node.json" }],
+    "exclude": ["node_modules", "tsconfig.node.json"]
+}
