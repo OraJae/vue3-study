@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import constantRouter from "./constant";
 export const routes: RouteRecordRaw[] = [{
-    path: '/',
+    path: '/docs',
     name: 'index',
     component: () => import('@/views/index.vue'),
     // redirect: '/',
