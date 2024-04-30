@@ -31,8 +31,9 @@ export default ({ command }) => {
         "@hooks": resolve(__dirname, "./src/hooks"),
       },
     },
-    base: command === "build" ? "/vue3-study" : "./",
+    base: command === "build" ? "/vue3-study/" : "/",
     build: {
+      publicDir: "/",
       outDir: "docs",
     },
     server: {

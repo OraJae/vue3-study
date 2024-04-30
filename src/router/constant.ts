@@ -1,5 +1,11 @@
 export default [
     {
+        path: '/',
+        name: 'index',
+        component: () => import('@/views/index.vue'),
+        // redirect: '/',
+    },
+    {
         path: '/seal',
         name: 'seal',
         meta: {
