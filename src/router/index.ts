@@ -2,14 +2,14 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import constantRouter from "./constant";
 export const routes: RouteRecordRaw[] = [
     ...constantRouter,
-    {
-        path: '/404',
-        component: () => import('@/views/404.vue'),
-    },
-    {
-        path: '/:pathMatch(.*)',
-        redirect: '/404',
-    },
+    // {
+    //     path: '/404',
+    //     component: () => import('@/views/404.vue'),
+    // },
+    // {
+    //     path: '/:pathMatch(.*)',
+    //     redirect: '/404',
+    // },
 ]
 
 console.log(routes);
