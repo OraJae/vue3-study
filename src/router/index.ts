@@ -15,9 +15,9 @@ export const routes: RouteRecordRaw[] = [
 console.log(routes);
 
 const router = createRouter({
-    history: createWebHistory(), // createWebHashHistory()
+    history: createWebHistory(import.meta.env.BASE_URL), // createWebHashHistory()
     routes: routes,
-    strict: true,
+    // strict: true,
     // scrollBehavior(to, from, savedPosition) {
     //     return new Promise(resolve => {
     //         if (savedPosition) {
