@@ -1,0 +1,1 @@
+import{_ as e}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{c as o,o as t,a as c}from"./index-YUb-i_3O.js";const s={},n=c("div",null,"404 无权访问该页面",-1),r=[n];function _(a,d){return t(),o("div",null,r)}const f=e(s,[["render",_]]);export{f as default};
