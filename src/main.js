@@ -13,6 +13,9 @@ import LayoutComponent from "./layout"
 
 const app = createApp(App)
 // app.use(ElementPlus)
-app.use(router).use(Antd).use(Vant).use(LayoutComponent)
+app.use(router)
+app.use(Antd)
+app.use(Vant)
+app.use(LayoutComponent)
 
 app.mount("#app")
