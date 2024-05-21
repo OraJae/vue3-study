@@ -642,6 +642,16 @@
   resolved "https://hkzc-npm-registry.hysz.co/@vitejs%2fplugin-vue/-/plugin-vue-5.0.4.tgz#508d6a0f2440f86945835d903fcc0d95d1bb8a37"
   integrity sha512-WS3hevEszI6CEVEx28F8RjTX97k3KsrcY6kvTg7+Whm5y3oYvcqzVeGCU3hxSAn4uY2CLCkeokkGKpoctccilQ==
 
+"@vue-office/docx@^1.6.1":
+  version "1.6.1"
+  resolved "https://hkzc-npm-registry.hysz.co/@vue-office%2fdocx/-/docx-1.6.1.tgz#98df74b528858db97a255ee58ecb7d83e7882f7b"
+  integrity sha512-DKB0F7b5tv4MvZO/nYdKiUUGXAD3LmZeHLQLodYg+c4Rap8w1EeU1DTJxXumq88xCggVrM69Qx+ocVIpq4eSYQ==
+
+"@vue-office/pdf@^2.0.2":
+  version "2.0.2"
+  resolved "https://hkzc-npm-registry.hysz.co/@vue-office%2fpdf/-/pdf-2.0.2.tgz#475010e4279c6dfb368e3dc7df81f56b597bd080"
+  integrity sha512-bQFqGxSOnKbvCS7OoJniYoTz1VIm1XOrRD27Msorxny9NFJ8RsQK1A4uhlnISJRFMaUwp1qlcVE9jMAhsiIyjg==
+
 "@vue/babel-helper-vue-transform-on@1.2.2":
   version "1.2.2"
   resolved "https://hkzc-npm-registry.hysz.co/@vue%2fbabel-helper-vue-transform-on/-/babel-helper-vue-transform-on-1.2.2.tgz#7f1f817a4f00ad531651a8d1d22e22d9e42807ef"
@@ -1188,6 +1198,11 @@ html-tags@^3.3.1:
   resolved "https://hkzc-npm-registry.hysz.co/html-tags/-/html-tags-3.3.1.tgz#a04026a18c882e4bba8a01a3d39cfe465d40b5ce"
   integrity sha512-ztqyC3kLto0e9WbNp0aeP+M3kTt+nbaIveGmUxAtZa+8iFgKLUOD4YKM5j+f3QD89bra7UeumolZHKuOXnTmeQ==
 
+html2json@^1.0.2:
+  version "1.0.2"
+  resolved "https://hkzc-npm-registry.hysz.co/html2json/-/html2json-1.0.2.tgz#c9d6d202fa65402386c202b345cf51bce80ed1ef"
+  integrity sha512-tCdVt82U+/D1GCXFIoN5VfCzx767065EZJ5B8nStQUGSXU9PQ4L/0kFvF2of3Qsoe9HGaJni+lxOkqakfw0zpA==
+
 iconv-lite@^0.6.3:
   version "0.6.3"
   resolved "https://hkzc-npm-registry.hysz.co/iconv-lite/-/iconv-lite-0.6.3.tgz#a52f80bf38da1952eb5c681790719871a1a72501"
@@ -1255,6 +1270,13 @@ json-schema-traverse@^0.4.1:
   version "0.4.1"
   resolved "https://hkzc-npm-registry.hysz.co/json-schema-traverse/-/json-schema-traverse-0.4.1.tgz#69f6a87d9513ab8bb8fe63bdb0979c448e684660"
   integrity sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==
+
+json2html@^0.0.8:
+  version "0.0.8"
+  resolved "https://hkzc-npm-registry.hysz.co/json2html/-/json2html-0.0.8.tgz#6c64ee08259744fd28a49fb97d7746b29ae0501d"
+  integrity sha512-WwGOLuGAqD9xv0rfS6g6R/ZWO9GDceR/68HGMaw7RXACU8+bRbQ94JTdVOtKhchRBPGK9jLzM0U7HR1kLWfPdA==
+  dependencies:
+    underscore ">=1.3.1"
 
 json5@^1.0.1:
   version "1.0.2"
@@ -1699,6 +1721,11 @@ ufo@^1.3.2:
   resolved "https://hkzc-npm-registry.hysz.co/ufo/-/ufo-1.5.3.tgz#3325bd3c977b6c6cd3160bf4ff52989adc9d3344"
   integrity sha512-Y7HYmWaFwPUmkoQCUIAYpKqkOf+SbVj/2fJJZ4RJMCfZp0rTGwRbzQD+HghfnhKOjL9E01okqz+ncJskGYfBNw==
 
+underscore@>=1.3.1:
+  version "1.13.6"
+  resolved "https://hkzc-npm-registry.hysz.co/underscore/-/underscore-1.13.6.tgz#04786a1f589dc6c09f761fc5f45b89e935136441"
+  integrity sha512-+A5Sja4HP1M08MaXya7p5LvjuM7K6q/2EaC0+iovj/wOcMsTzMvDFbasi/oSapiwOlt252IqsKqPjCl7huKS0A==
+
 unimport@^3.7.1:
   version "3.7.1"
   resolved "https://hkzc-npm-registry.hysz.co/unimport/-/unimport-3.7.1.tgz#37250d0f3f2dcf1e1b66ed13728db0e9f50ba0c3"
@@ -1812,7 +1839,7 @@ vite@^5.2.0:
   optionalDependencies:
     fsevents "~2.3.3"
 
-vue-demi@*:
+vue-demi@*, vue-demi@^0.14.7:
   version "0.14.7"
   resolved "https://hkzc-npm-registry.hysz.co/vue-demi/-/vue-demi-0.14.7.tgz#8317536b3ef74c5b09f268f7782e70194567d8f2"
   integrity sha512-EOG8KXDQNwkJILkx/gPcoL/7vH+hORoBaKgGe+6W7VFMvCYJfmF2dGbvgDroVnI8LU7/kTu8mbjRZGBU1z9NTA==

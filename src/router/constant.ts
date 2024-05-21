@@ -29,6 +29,14 @@ export default [
                 component: () => import('@/views/sheet/index.vue'),
             },
             {
+                path: 'filePreview',
+                name: 'filePreview',
+                meta: {
+                    title: '文件预览'
+                },
+                component: () => import('@/views/filePreview/index.vue'),
+            },
+            {
                 path: 'h5/pageCache/list',
                 name: 'h5PageCacheList',
                 meta: {
@@ -83,6 +91,22 @@ export default [
                     title: 'h5Vant组件'
                 },
                 component: () => import('@/views/h5/vant/index.vue'),
+            },
+            {
+                path: '/excelExport',
+                name: 'excelExport',
+                meta: {
+                    title: 'excel导出通用工具函数'
+                },
+                component: () => import('@/views/excelExport/index.vue'),
+            },
+            {
+                path: 'test',
+                name: 'test',
+                meta: {
+                    title: 'test'
+                },
+                component: () => import('@/views/test/index.vue'),
             },
         ]
     },
