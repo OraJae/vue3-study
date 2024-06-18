@@ -34,7 +34,7 @@ export default ({ command }) => {
     base: "/vue3-study/",
     build: {
       publicDir: "/",
-      outDir: "docs",
+      outDir: "dist",
     },
     server: {
       port: 5174,
