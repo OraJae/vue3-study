@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import constantRouter from "./constant";
 export const routes: RouteRecordRaw[] = [
     ...constantRouter,
@@ -15,7 +15,8 @@ export const routes: RouteRecordRaw[] = [
 console.log(routes);
 
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL), // createWebHashHistory()
+    // history: createWebHistory(import.meta.env.BASE_URL), // createWebHashHistory()
+    history: createWebHashHistory(), // createWebHashHistory()
     routes: routes,
     // strict: true,
     // scrollBehavior(to, from, savedPosition) {
