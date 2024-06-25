@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "@vitejs/plugin-vue-jsx": "^2.0.0",
     "@vue-office/docx": "^1.6.1",
     "@vue-office/pdf": "^2.0.2",

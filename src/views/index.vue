@@ -24,7 +24,8 @@ const menuList = ref([
     children: [
       { name: 'pdf印章', path: '/seal' },
       { name: 'sheet表格', path: '/sheet' },
-      { name: '文件预览', path: '/filePreview' }
+      { name: '文件预览', path: '/filePreview' },
+      { name: '高德地图', path: '/amap' },
     ]
   },
   {

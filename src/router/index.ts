@@ -36,7 +36,16 @@ const router = createRouter({
 // 路由拦截
 router.beforeEach((to, from, next) => {
     document.title = (to?.meta?.title ?? 'tiger') as string
-    next()
+    let token = decodeURIComponent(sessionStorage.getItem("token"))
+    if (token == "admin321") {
+        next()
+    } else {
+        if (to.name === 'login') {
+            next()
+        } else {
+            next({ path: "/login" })
+        }
+    }
 })
 
 export default router;
