@@ -45,6 +45,7 @@ const menuList = ref([
     categoryName: 'test',
     children: [
       { name: 'test', path: '/test' },
+      { name: 'download', path: '/download' },
     ]
   }
 ])

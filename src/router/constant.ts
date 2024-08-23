@@ -110,7 +110,7 @@ export default [
         component: () => import('@/views/h5/vant/index.vue'),
     },
     {
-        path: '//excelExport',
+        path: '/excelExport',
         name: 'excelExport',
         meta: {
             title: 'excel导出通用工具函数'
@@ -124,6 +124,14 @@ export default [
             title: 'test'
         },
         component: () => import('@/views/test/index.vue'),
+    },
+    {
+        path: '/download',
+        name: 'download',
+        meta: {
+            title: 'download'
+        },
+        component: () => import('@/views/test/download/index.vue'),
     },
     // {
     //     path: '/h5',
