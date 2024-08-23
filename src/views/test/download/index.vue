@@ -1,13 +1,26 @@
 <template>
   <!-- <input @change="uploadFile" type="file" id="file" name="file" /> -->
-  <a-textarea v-model:value="textareaValue" :placeholder="placeholderText" :rows="8" />
-  <!-- <span @click="log(textareaValue)">log</span> -->
 
+  <!-- <span @click="log(funcStr)">log</span> -->
+  <a-row :gutter="16">
+    <a-col :span="18">
+      <a-textarea v-model:value="textareaValue" :placeholder="placeholderText" :rows="8" />
+    </a-col>
+    <a-col :span="6">
+      <a-textarea v-model:value="funcStr" :placeholder="placeholderText" :rows="8" />
+    </a-col>
+  </a-row>
   <a-button type="primary" style="margin: 12px" @click="downloadAll">全部下载</a-button>
   <a-table :columns="columns" :data-source="dataSource" bordered :pagination="false">
     <template #bodyCell="{ column, record, index }">
       <template v-if="column.dataIndex === 'index'">
         <span>{{ index + 1 }}</span>
+      </template>
+      <template v-if="column.dataIndex === 'title'">
+        <span @click="copyToClipboard(record.title)">{{ record.title }}</span>
+      </template>
+      <template v-if="column.dataIndex === 'url'">
+        <span @click="copyToClipboard(record.url)">{{ record.url }}</span>
       </template>
       <template v-if="column.dataIndex === 'action'">
         <a @click="download(record, index)" :class="{ visited: visitedIndex.includes(index) }">下载</a>
@@ -19,8 +32,7 @@
 
 <script setup lang="ts">
 import { ref, reactive } from "vue";
-// import data from "./data.json";
-import { downloadFile } from "@/utils/util";
+import { downloadFile, copyToClipboard } from "@/utils/util";
 
 let placeholderText = `[
     {
@@ -29,31 +41,29 @@ let placeholderText = `[
     },
     ...
 ]`;
-// function uploadFile(e) {
-//   let file = e.target.files[0];
-//   console.log(file);
-//   var reads = new FileReader();
-//   reads.readAsDataURL(file);
-//   // reads.readAsArrayBuffer(file)
-//   reads.onload = (e) => {
-//     let res = e.target.result;
-//     console.log(res);
-//   };
-// }
+
+const funcStr = `data.map((item) => {
+  return {
+    title: item.title + ".mp4",
+    url: item.videoModel.vBUrl,
+  };
+});`;
 
 const textareaValue = ref();
 
 const dataSource = computed(() => {
   if (textareaValue.value) {
-    return JSON.parse(textareaValue.value);
+    // return JSON.parse(textareaValue.value);
+    let data = JSON.parse(textareaValue.value)
+    return eval(funcStr)
   } else {
     return [];
   }
 });
 
-// function log(str) {
-//   console.log(str);
-// }
+function log(str) {
+  console.log(str);
+}
 const columns = [
   {
     title: "序号",
