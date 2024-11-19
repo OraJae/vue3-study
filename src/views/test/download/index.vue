@@ -92,7 +92,7 @@ function showDetail(record) {
 
 async function importCourses(str) {
   try {
-    const response = await import(`./${str}`);
+    const response = await import(`@/assets/files/${str}.json`);
     console.log(response.default);
     textareaValue.value = JSON.stringify(response.default);
   } catch (error) {
