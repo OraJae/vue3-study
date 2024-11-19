@@ -11,5 +11,13 @@ declare module 'vue' {
     MulPicker: typeof import('./../src/components/vant/mulPicker.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    VanCell: typeof import('vant/es')['Cell']
+    VanCheckbox: typeof import('vant/es')['Checkbox']
+    VanDatePicker: typeof import('vant/es')['DatePicker']
+    VanIcon: typeof import('vant/es')['Icon']
+    VanList: typeof import('vant/es')['List']
+    VanPickerGroup: typeof import('vant/es')['PickerGroup']
+    VanPopup: typeof import('vant/es')['Popup']
+    VanTimePicker: typeof import('vant/es')['TimePicker']
   }
 }

@@ -10,6 +10,8 @@
       <a-textarea v-model:value="funcStr" :placeholder="placeholderText" :rows="8" />
     </a-col>
   </a-row>
+  <a-button type="primary" style="margin: 12px" @click="importCourses('中级知识')">中级知识</a-button>
+  <a-button type="primary" style="margin: 12px" @click="importCourses('中级实操')">中级实操</a-button>
   <a-button type="primary" style="margin: 12px" @click="downloadAll">全部下载</a-button>
   <a-table :columns="columns" :data-source="dataSource" bordered :pagination="false">
     <template #bodyCell="{ column, record, index }">
@@ -23,7 +25,10 @@
         <span @click="copyToClipboard(record.url)">{{ record.url }}</span>
       </template>
       <template v-if="column.dataIndex === 'action'">
-        <a @click="download(record, index)" :class="{ visited: visitedIndex.includes(index) }">下载</a>
+        <a-space>
+          <a @click="showDetail(record)">查看</a>
+          <a @click="download(record, index)" :class="{ visited: visitedIndex.includes(index) }">下载</a>
+        </a-space>
         <!-- <a :href="record.url" :class="{ visited: visitedIndex.includes(index) }" :download="record.title">下载</a> -->
       </template>
     </template>
@@ -42,28 +47,26 @@ let placeholderText = `[
     ...
 ]`;
 
-const funcStr = `data.map((item) => {
+let data = ref("");
+const funcStr = ref(`data.value.map((item) => {
   return {
     title: item.title + ".mp4",
     url: item.videoModel.vBUrl,
   };
-});`;
+});`);
 
 const textareaValue = ref();
 
 const dataSource = computed(() => {
   if (textareaValue.value) {
     // return JSON.parse(textareaValue.value);
-    let data = JSON.parse(textareaValue.value)
-    return eval(funcStr)
+    data.value = JSON.parse(textareaValue.value);
+    return eval(funcStr.value);
   } else {
     return [];
   }
 });
 
-function log(str) {
-  console.log(str);
-}
 const columns = [
   {
     title: "序号",
@@ -82,6 +85,20 @@ const columns = [
     dataIndex: "action",
   },
 ];
+
+function showDetail(record) {
+  window.open(record.url);
+}
+
+async function importCourses(str) {
+  try {
+    const response = await import(`./${str}`);
+    console.log(response.default);
+    textareaValue.value = JSON.stringify(response.default);
+  } catch (error) {
+    console.error("加载 JSON 文件失败:", error);
+  }
+}
 
 // 是否点击过的索引
 let visitedIndex = reactive([]);
