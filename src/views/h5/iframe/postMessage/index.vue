@@ -3,28 +3,34 @@
     <p>father</p>
     <input id="text" type="text" v-model="inputValue" />
     <button id="sendMessage" @click="sendMessageToSon">发送消息</button>
-    <iframe ref="myIframe" :src="baseUrl + '/h5/iframe/postMessage/son'" frameborder="0"></iframe>
+
+    <p style="margin-top: 16px">从子站点接收到的消息: {{ sonMessage }}</p>
+
+    <iframe ref="myIframe" :src="baseUrl + '/#/h5/iframe/postMessage/son'" frameborder="0"></iframe>
+    <!-- <iframe ref="myIframe" src="http://localhost:5174/#/h5/iframe/postMessage/grandson" frameborder="0"></iframe> -->
   </div>
 </template>
 
 <script setup lang="ts">
-let baseUrl = location.origin
-console.log(import.meta.env)
+let baseUrl = location.origin;
+console.log(import.meta.env);
+const sonMessage = ref("")
+
 window.addEventListener(
   "message",
   function receiveMessage(event) {
-    let data = event.data
-    console.log("father接收到的数据", data)
+    sonMessage.value = event.data
+    console.log("father接收到的数据", sonMessage.value);
   },
   false
-)
+);
 
-const inputValue = ref("")
-const myIframe = ref()
+const inputValue = ref("");
+const myIframe = ref();
 
 function sendMessageToSon() {
-  console.log("向子页面传递的数据", inputValue.value)
-  myIframe.value.contentWindow.postMessage(inputValue.value, "*")
+  console.log("向子页面传递的数据", inputValue.value);
+  myIframe.value.contentWindow.postMessage(inputValue.value, "*");
 }
 </script>
 <style lang="less" scoped>

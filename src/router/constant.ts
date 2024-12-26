@@ -133,6 +133,40 @@ export default [
         },
         component: () => import('@/views/test/download/index.vue'),
     },
+    {
+        path: '/plugin',
+        name: 'plugin',
+        meta: {
+            title: 'plugin'
+        },
+        component: () => import('@/views/plugin/index.vue'),
+        children: [
+            {
+                path: 'mdReader',
+                name: 'mdReader',
+                meta: {
+                    title: 'mdReader'
+                },
+                component: () => import('@/views/plugin/mdReader/index.vue'),
+            },
+            {
+                path: 'three',
+                name: 'three',
+                meta: {
+                    title: 'three'
+                },
+                component: () => import('@/views/plugin/three/index.vue'),
+            },
+        ]
+    },
+    // {
+    //     path: '/mdReader',
+    //     name: 'mdReader',
+    //     meta: {
+    //         title: 'mdReader'
+    //     },
+    //     component: () => import('@/views/document/mdReader/index.vue'),
+    // },
     // {
     //     path: '/h5',
     //     name: 'h5Page',

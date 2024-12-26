@@ -3,7 +3,9 @@
     <p>son</p>
     <input id="text" type="text" v-model="inputValue" />
     <button id="sendMessage" @click="sendMessageToParent">发送消息</button>
-    <iframe ref="myIframe" :src="baseUrl + '/h5/iframe/postMessage/grandson'" frameborder="0"></iframe>
+
+    <p style="margin-top: 16px;">从父站点接收到的消息: {{fatherMessage}}</p>
+    <!-- <iframe ref="myIframe" :src="baseUrl + '/#/h5/iframe/postMessage/grandson'" frameborder="0"></iframe> -->
   </div>
 </template>
 
@@ -20,11 +22,12 @@ function sendMessageToParent() {
   }
 }
 
+const fatherMessage = ref("")
 window.addEventListener(
   "message",
   function receiveMessage(event) {
-    let data = event.data
-    console.log("son接收到的数据", data)
+    fatherMessage.value = event.data
+    console.log("son接收到的数据", fatherMessage.value)
   },
   false
 )

@@ -5,6 +5,7 @@ import router from "./router/index"
 import Antd from "ant-design-vue"
 import Vant from "vant"
 import "vant/lib/index.css"
+import 'vditor/dist/index.css'
 
 // Vue.use(List);
 import "@styles/index.less"
