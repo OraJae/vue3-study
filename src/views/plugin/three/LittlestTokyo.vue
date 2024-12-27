@@ -36,7 +36,7 @@ onMounted(() => {
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.target.set(0, 0.5, 0);
-  controls.update(
+  controls.update();
   controls.enablePan = false;
   controls.enableDamping = true;
 
