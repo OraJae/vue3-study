@@ -1,9 +1,9 @@
-import { resolve } from "path"
-import { defineConfig } from "vite"
-import vue from "@vitejs/plugin-vue"
-import Components from "unplugin-vue-components/vite"
-import { AntDesignVueResolver } from "unplugin-vue-components/resolvers"
-import createVitePlugins from "./vite/plugins"
+import { resolve } from "path";
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import Components from "unplugin-vue-components/vite";
+import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
+import createVitePlugins from "./vite/plugins";
 
 //  const VITE_APP_SERVER_URL: string = loadEnv(mode, process.cwd()).VITE_APP_SERVER_URL;
 export default ({ command }) => {
@@ -50,5 +50,5 @@ export default ({ command }) => {
       //   }
       //   : undefined
     },
-  })
-}
+  });
+};

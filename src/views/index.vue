@@ -27,7 +27,6 @@ const menuList = ref([
       { name: "文件预览", path: "/filePreview" },
       { name: "高德地图", path: "/amap" },
       { name: 'md文档渲染', path: '/plugin/mdReader' },
-      { name: "airomap", path: "/airomap/index.html", target: "html" },
       { name: "threejs", path: "/plugin/three" },
     ],
   },
@@ -54,10 +53,6 @@ const menuList = ref([
 const router = useRouter();
 function routerTo(child) {
   removeCacheEntry("h5PageCacheList");
-  if (child.target === "html") {
-    location.href = child.path;
-    return;
-  }
   router.push({ path: child.path });
 }
 </script>
