@@ -9,7 +9,6 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment";
 import Stats from "three/examples/jsm/libs/stats.module";
-
 const container = ref<HTMLElement | null>(null);
 const modelObj = new URL("@/assets/files/LittlestTokyo.glb", import.meta.url).href;
 
@@ -41,7 +40,9 @@ onMounted(() => {
   controls.enableDamping = true;
 
   const dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderPath('/public/modules/draco/');
+  let env = import.meta.env.VITE_ENV_CONFIG
+  let path = env == "dev" ? "/public/modules/draco/" : "/modules/draco/"
+  dracoLoader.setDecoderPath(path);
   dracoLoader.setDecoderConfig({ type: "js" });
 
   const loader = new GLTFLoader();
@@ -86,5 +87,6 @@ onMounted(() => {
     renderer.render(scene, camera);
   }
 });
+
 </script>
 <style scoped></style>

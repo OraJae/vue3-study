@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host",
-    "build": "vite build",
+    "dev": "vite --mode development --host",
+    "build": "vite build --mode production",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -16,6 +16,8 @@
     "@vue-office/pdf": "^2.0.2",
     "@vueuse/core": "^9.1.0",
     "ant-design-vue": "4.x",
+    "aws-sdk": "^2.1692.0",
+    "enquire.js": "^2.1.6",
     "html2json": "^1.0.2",
     "json2html": "^0.0.8",
     "three": "^0.171.0",
@@ -29,7 +31,7 @@
     "vue-pdf": "^4.3.0",
     "vue-pdf-embed": "1",
     "vue-router": "4",
-    "xe-utils": "^3.5.25",
+    "xe-utils": "^3.6.0",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {

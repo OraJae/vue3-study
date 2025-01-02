@@ -36,7 +36,7 @@ function sendMessageToSon() {
 <style lang="less" scoped>
 .father {
   padding: 16px;
-  height: 100%;
+  height: 100vh;
   background-image: linear-gradient(135deg, #fce38a, #f38181);
 }
 iframe {

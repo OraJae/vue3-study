@@ -1,41 +1,50 @@
 <template>
   <a-button type="primary" @click="exportSheet">导出</a-button>
+  <a-table :data-source="raw_data" row-key="date">
+    <a-table-column title="会议时间" data-index="date" key="date" />
+    <a-table-column title="上午/下午" data-index="morningOrAfternoon" key="morningOrAfternoon" />
+    <a-table-column title="会议主题" data-index="theme" key="theme" />
+    <a-table-column title="地点" data-index="location" key="location" />
+    <a-table-column title="内部参会人员" data-index="inner" key="inner" />
+    <a-table-column title="外部参会人员" data-index="outer" key="outer" />
+    <a-table-column title="会议议程" data-index="content" key="content" />
+    <a-table-column title="操作" data-index="action" key="action" />
+  </a-table>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from "vue";
 import { utils, writeFileXLSX } from "xlsx";
+const raw_data = reactive([
+  {
+    date: "2023-11-27",
+    morningOrAfternoon: "上午",
+    theme: "区领导调研工作方案",
+    location: "区政府大楼",
+    inner: "张三、李四",
+    outer: "区领导",
+    content: "调研工作安排",
+  },
+  {
+    date: "2023-11-27",
+    morningOrAfternoon: "上午",
+    theme: "区领导调研工作方案",
+    location: "区政府大楼",
+    inner: "张三、李四",
+    outer: "区领导",
+    content: "调研工作安排",
+  },
+  {
+    date: "2023-11-28",
+    morningOrAfternoon: "下午",
+    theme: "区领导调研工作方案",
+    location: "区政府大楼",
+    inner: "张三、李四",
+    outer: "区领导",
+    content: "调研工作安排",
+  },
+]);
 function exportSheet() {
   /* fetch JSON data and parse */
-  const raw_data = [
-    {
-      date: "2023-11-27",
-      morningOrAfternoon: "上午",
-      theme: "区领导调研工作方案",
-      location: "区政府大楼",
-      inner: "张三、李四",
-      outer: "区领导",
-      content: "调研工作安排",
-    },
-    {
-      date: "2023-11-27",
-      morningOrAfternoon: "上午",
-      theme: "区领导调研工作方案",
-      location: "区政府大楼",
-      inner: "张三、李四",
-      outer: "区领导",
-      content: "调研工作安排",
-    },
-    {
-      date: "2023-11-28",
-      morningOrAfternoon: "下午",
-      theme: "区领导调研工作方案",
-      location: "区政府大楼",
-      inner: "张三、李四",
-      outer: "区领导",
-      content: "调研工作安排",
-    },
-  ];
 
   /* flatten objects */
   // const rows = prez.map((row) => ({

@@ -1,6 +1,6 @@
 <template>
-  <input type="file" @change="changeHandle" />
-  <vue-office-docx :src="docx" style="height: 100vh" @rendered="renderedHandler" @error="errorHandler" />
+  <input type="file" @change="changeHandle" accept=".docx,.doc" />
+  <vue-office-docx :src="docx" @rendered="renderedHandler" @error="errorHandler" />
 </template>
 
 <script>
@@ -38,12 +38,12 @@ export default {
 </script>
 
 <style lang='less' scoped>
-input {
-  position: fixed;
-  left: 10pt;
-  bottom: 10pt;
-  z-index: 1;
-}
+// input {
+//   position: fixed;
+//   left: 10pt;
+//   bottom: 10pt;
+//   z-index: 1;
+// }
 :deep(.docx-wrapper) {
   background: #fff;
   padding: 12px 0;
