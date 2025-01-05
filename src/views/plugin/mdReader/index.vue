@@ -86,7 +86,8 @@ onMounted(async () => {
 });
 
 let timer: any = null;
-window.addEventListener("scroll", () => {
+
+const handleScroll = () => {
   if (timer) {
     clearTimeout(timer);
   }
@@ -94,7 +95,9 @@ window.addEventListener("scroll", () => {
   timer = setTimeout(() => {
     showFloatBtn.value = false;
   }, 1500);
-});
+};
+
+window.addEventListener("scroll", handleScroll);
 
 function renderVditor() {
   Vditor.preview(previewElement.value, mdFile, {
@@ -175,16 +178,15 @@ const initOutline = () => {
 };
 
 onUnmounted(() => {
-  window.removeEventListener("scroll", () => {
-    console.log(111)
-  });
+  window.removeEventListener("scroll", handleScroll);
 });
 </script>
 
 <style lang="less" scoped>
 .mdReader {
+  position: absolute;
   width: 100%;
-  height: 100%;
+  // height: 100%;
   background-image: linear-gradient(90deg, rgba(159, 219, 252, 0.15) 3%, transparent 0),
     linear-gradient(1turn, rgba(159, 219, 252, 0.15) 3%, transparent 0);
   background-size: 20px 20px;

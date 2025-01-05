@@ -22,11 +22,11 @@ const menuList = ref([
   {
     categoryName: "第三方插件使用",
     children: [
-      { name: "pdf印章", path: "/seal" },
-      { name: "sheet表格", path: "/sheet" },
-      { name: "文件预览", path: "/filePreview" },
-      { name: "高德地图", path: "/amap" },
-      { name: 'md文档渲染', path: '/plugin/mdReader' },
+      { name: "pdf印章", path: "/plugin/seal" },
+      { name: "sheet表格", path: "/plugin/sheet" },
+      { name: "文件预览", path: "/plugin/filePreview" },
+      { name: "高德地图", path: "/plugin/amap" },
+      { name: "md文档渲染", path: "/plugin/mdReader" },
       { name: "threejs", path: "/plugin/three" },
     ],
   },

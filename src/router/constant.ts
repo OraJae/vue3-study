@@ -1,193 +1,184 @@
 export default [
-
     {
-        path: '/',
-        name: 'index',
-        redirect: '/home',
+        path: "/",
+        name: "index",
+        redirect: "/home",
     },
     {
-        path: '/login',
-        name: 'login',
+        path: "/login",
+        name: "login",
         meta: {
-            title: '登录'
+            title: "登录",
         },
-        component: () => import('@/views/login/index.vue'),
+        component: () => import("@/views/login/index.vue"),
     },
     {
-        path: '/home',
-        name: 'home',
+        path: "/home",
+        name: "home",
         meta: {
-            title: '首页'
+            title: "首页",
         },
-        component: () => import('@/views/index.vue'),
+        component: () => import("@/views/index.vue"),
+    },
+    //   {
+    //     path: "/h5/pageCache/list",
+    //     name: "h5PageCacheList",
+    //     meta: {
+    //       title: "h5页面缓存方案",
+    //     },
+    //     component: () => import("@/views/h5/pageCache/index.vue"),
+    //   },
+    //   {
+    //     path: "/h5/pageCache/detail",
+    //     name: "h5PageCacheDetail",
+    //     meta: {
+    //       title: "h5页面缓存方案详情",
+    //     },
+    //     component: () => import("@/views/h5/pageCache/detail.vue"),
+    //   },
+    {
+        path: "/h5/pageLayout",
+        name: "h5PageLayout",
+        meta: {
+            title: "h5页面布局组件",
+        },
+        component: () => import("@/views/h5/pageLayout/index.vue"),
     },
     {
-        path: '/seal',
-        name: 'seal',
+        path: "/h5/iframe/postMessage",
+        name: "h5IframePostMessage",
         meta: {
-            title: 'pdf印章'
+            title: "iframe father",
         },
-        component: () => import('@/views/seal/index.vue'),
+        component: () => import("@/views/h5/iframe/postMessage/index.vue"),
     },
     {
-        path: '/sheet',
-        name: 'sheet',
+        path: "/h5/iframe/postMessage/son",
+        name: "h5IframePostMessageSon",
         meta: {
-            title: 'sheet表格'
+            title: "iframe son",
         },
-        component: () => import('@/views/sheet/index.vue'),
+        component: () => import("@/views/h5/iframe/postMessage/son.vue"),
     },
     {
-        path: '/filePreview',
-        name: 'filePreview',
+        path: "/h5/iframe/postMessage/grandson",
+        name: "h5IframePostMessageGrandson",
         meta: {
-            title: '文件预览'
+            title: "iframe grandson",
         },
-        component: () => import('@/views/filePreview/index.vue'),
+        component: () => import("@/views/h5/iframe/postMessage/grandson.vue"),
     },
     {
-        path: '/amap',
-        name: 'amap',
+        path: "/h5/vant",
+        name: "h5Vant",
         meta: {
-            title: '高德地图'
+            title: "h5Vant组件",
         },
-        component: () => import('@/views/amap/index.vue'),
+        component: () => import("@/views/h5/vant/index.vue"),
     },
     {
-        path: '/h5/pageCache/list',
-        name: 'h5PageCacheList',
+        path: "/excelExport",
+        name: "excelExport",
         meta: {
-            title: 'h5页面缓存方案'
+            title: "excel导出通用工具函数",
         },
-        component: () => import('@/views/h5/pageCache/index.vue'),
+        component: () => import("@/views/excelExport/index.vue"),
     },
     {
-        path: '/h5/pageCache/detail',
-        name: 'h5PageCacheDetail',
+        path: "/test",
+        name: "test",
         meta: {
-            title: 'h5页面缓存方案详情'
+            title: "test",
         },
-        component: () => import('@/views/h5/pageCache/detail.vue'),
+        component: () => import("@/views/test/index.vue"),
     },
     {
-        path: '/h5/pageLayout',
-        name: 'h5PageLayout',
+        path: "/download",
+        name: "download",
         meta: {
-            title: 'h5页面布局组件'
+            title: "download",
         },
-        component: () => import('@/views/h5/pageLayout/index.vue'),
+        component: () => import("@/views/test/download/index.vue"),
     },
     {
-        path: '/h5/iframe/postMessage',
-        name: 'h5IframePostMessage',
+        path: "/plugin",
+        name: "plugin",
         meta: {
-            title: 'iframe father'
+            title: "plugin",
         },
-        component: () => import('@/views/h5/iframe/postMessage/index.vue'),
-    },
-    {
-        path: '/h5/iframe/postMessage/son',
-        name: 'h5IframePostMessageSon',
-        meta: {
-            title: 'iframe son'
-        },
-        component: () => import('@/views/h5/iframe/postMessage/son.vue'),
-    },
-    {
-        path: '/h5/iframe/postMessage/grandson',
-        name: 'h5IframePostMessageGrandson',
-        meta: {
-            title: 'iframe grandson'
-        },
-        component: () => import('@/views/h5/iframe/postMessage/grandson.vue'),
-    },
-    {
-        path: '/h5/vant',
-        name: 'h5Vant',
-        meta: {
-            title: 'h5Vant组件'
-        },
-        component: () => import('@/views/h5/vant/index.vue'),
-    },
-    {
-        path: '/excelExport',
-        name: 'excelExport',
-        meta: {
-            title: 'excel导出通用工具函数'
-        },
-        component: () => import('@/views/excelExport/index.vue'),
-    },
-    {
-        path: '/test',
-        name: 'test',
-        meta: {
-            title: 'test'
-        },
-        component: () => import('@/views/test/index.vue'),
-    },
-    {
-        path: '/download',
-        name: 'download',
-        meta: {
-            title: 'download'
-        },
-        component: () => import('@/views/test/download/index.vue'),
-    },
-    {
-        path: '/plugin',
-        name: 'plugin',
-        meta: {
-            title: 'plugin'
-        },
-        component: () => import('@/views/plugin/index.vue'),
+        component: () => import("@/views/plugin/index.vue"),
         children: [
             {
-                path: 'mdReader',
-                name: 'mdReader',
+                path: "seal",
+                name: "seal",
                 meta: {
-                    title: 'mdReader'
+                    title: "pdf印章",
                 },
-                component: () => import('@/views/plugin/mdReader/index.vue'),
+                component: () => import("@/views/plugin/seal/index.vue"),
             },
             {
-                path: 'three',
-                name: 'three',
+                path: "sheet",
+                name: "sheet",
                 meta: {
-                    title: 'three'
+                    title: "sheet表格",
                 },
-                component: () => import('@/views/plugin/three/index.vue'),
+                component: () => import("@/views/plugin/sheet/index.vue"),
             },
-        ]
+            {
+                path: "filePreview",
+                name: "filePreview",
+                meta: {
+                    title: "文件预览",
+                },
+                component: () => import("@/views/plugin/filePreview/index.vue"),
+            },
+            {
+                path: "amap",
+                name: "amap",
+                meta: {
+                    title: "高德地图",
+                },
+                component: () => import("@/views/plugin/amap/index.vue"),
+            },
+            {
+                path: "mdReader",
+                name: "mdReader",
+                meta: {
+                    title: "mdReader",
+                },
+                component: () => import("@/views/plugin/mdReader/index.vue"),
+            },
+            {
+                path: "three",
+                name: "three",
+                meta: {
+                    title: "three",
+                },
+                component: () => import("@/views/plugin/three/index.vue"),
+            },
+        ],
     },
-    // {
-    //     path: '/mdReader',
-    //     name: 'mdReader',
-    //     meta: {
-    //         title: 'mdReader'
-    //     },
-    //     component: () => import('@/views/document/mdReader/index.vue'),
-    // },
-    // {
-    //     path: '/h5',
-    //     name: 'h5Page',
-    //     component: () => import('@/views/h5/index.vue'),
-    //     children: [
-    //         {
-    //             path: 'pageCache/list',
-    //             name: 'h5PageCacheList',
-    //             meta: {
-    //                 title: 'h5页面缓存方案'
-    //             },
-    //             component: () => import('@/views/h5/pageCache/index.vue'),
-    //         },
-    //         {
-    //             path: 'pageCache/detail',
-    //             name: 'h5PageCacheDetail',
-    //             meta: {
-    //                 title: 'h5页面缓存方案详情'
-    //             },
-    //             component: () => import('@/views/h5/pageCache/detail.vue'),
-    //         }
-    //     ]
-    // },
+    {
+        path: "/h5",
+        name: "h5Page",
+        component: () => import("@/views/h5/index.vue"),
+        children: [
+            {
+                path: "pageCache/list",
+                name: "h5PageCacheList",
+                meta: {
+                    title: "h5页面缓存方案",
+                },
+                component: () => import("@/views/h5/pageCache/index.vue"),
+            },
+            {
+                path: "pageCache/detail",
+                name: "h5PageCacheDetail",
+                meta: {
+                    title: "h5页面缓存方案详情",
+                },
+                component: () => import("@/views/h5/pageCache/detail.vue"),
+            },
+        ],
+    },
 ];
