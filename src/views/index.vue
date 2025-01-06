@@ -15,8 +15,8 @@ const menuList = ref([
   {
     categoryName: "封装组件展示",
     children: [
-      { name: "h5页面布局组件", path: "/h5/pageLayout" },
-      { name: "h5Vant组件扩展", path: "/h5/vant" },
+      { name: "h5页面布局组件", path: "/components/h5/pageLayout" },
+      { name: "h5Vant组件扩展", path: "/components/h5/vant" },
     ],
   },
   {
@@ -33,19 +33,19 @@ const menuList = ref([
   {
     categoryName: "业务场景方案",
     children: [
-      { name: "h5页面缓存方案", path: "/h5/pageCache/list" },
-      { name: "iframe传递数据", path: "/h5/iframe/postMessage" },
+      { name: "h5页面缓存方案", path: "/scene/pageCache/list" },
+      { name: "iframe传递数据", path: "/scene/postMessage" },
     ],
   },
   {
     categoryName: "工具函数封装",
-    children: [{ name: "excel导出通用工具函数(antd)", path: "/excelExport" }],
+    children: [{ name: "excel导出通用工具函数(antd)", path: "/toolFunction/excelExport" }],
   },
   {
-    categoryName: "test",
+    categoryName: "功能网页",
     children: [
-      { name: "test", path: "/test" },
-      { name: "download", path: "/download" },
+      { name: "download", path: "/webPage/download" },
+      { name: "emby封面", path: "/webPage/cover" },
     ],
   },
 ]);

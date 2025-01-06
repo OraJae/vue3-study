@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import useRouteCache from '@hooks/useRouteCache'
 const { caches, addCache } = useRouteCache()
-addCache(['h5PageCacheList'])
+addCache(['pageCacheList'])
 </script>
 <style>
 #app {

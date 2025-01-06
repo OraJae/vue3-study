@@ -35,6 +35,7 @@ import * as THREE from "three";
 onMounted(() => {
   if (container.value) {
     setScene();
+    setAxesHelper();
     setCamera();
     setRender();
     setModel();
@@ -65,10 +66,14 @@ onMounted(() => {
     // const scale = 2;
     // scene.scale.set(scale, scale, scale);
   }
+  function setAxesHelper() {
+    const axisHelper = new THREE.AxesHelper(5); // 红色代表 X 轴. 绿色代表 Y 轴. 蓝色代表 Z 轴.
+    scene.add(axisHelper);
+  }
   function setCamera() {
     camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 18;
-    camera.position.x = 20;
+    camera.position.z = -180;
+    camera.position.x = -200;
     camera.position.y = 0;
     // camera.rotation = { x: 1.5, y: -0.7, z: 1.5 };
     window.camera = camera;
@@ -98,15 +103,6 @@ onMounted(() => {
         scene.add(gltf.scene);
         console.log(gltf);
         window.gltf = gltf;
-
-        // setInterval(() => {
-        //   gltf.scene.rotation.y += 0.01;
-        // }, 10);
-        // gltf.animations; // Array<THREE.AnimationClip>
-        // gltf.scene; // THREE.Group
-        // gltf.scenes; // Array<THREE.Group>
-        // gltf.cameras; // Array<THREE.Camera>
-        // gltf.asset; // Object
       },
       // called while loading is progressing
       function (xhr) {

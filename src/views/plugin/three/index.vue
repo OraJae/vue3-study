@@ -20,10 +20,10 @@ const components = {
   LittlestTokyo,
 };
 
-const modelName = ref("LittlestTokyo");
+const modelName = ref("duck_bodybuilder");
 const modelOptions = ref([
   { label: "duck_bodybuilder", value: "duck_bodybuilder" },
-  { label: "LittlestTokyo", value: "LittlestTokyo" },
+  // { label: "LittlestTokyo", value: "LittlestTokyo" },
 ]);
 
 const currentComponent = computed(() => components[modelName.value]);

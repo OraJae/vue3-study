@@ -1,148 +1,183 @@
 <template>
-  <a-button type="primary" @click="exportSheet">导出</a-button>
-  <a-table :data-source="raw_data" row-key="date">
-    <a-table-column title="会议时间" data-index="date" key="date" />
-    <a-table-column title="上午/下午" data-index="morningOrAfternoon" key="morningOrAfternoon" />
-    <a-table-column title="会议主题" data-index="theme" key="theme" />
-    <a-table-column title="地点" data-index="location" key="location" />
-    <a-table-column title="内部参会人员" data-index="inner" key="inner" />
-    <a-table-column title="外部参会人员" data-index="outer" key="outer" />
-    <a-table-column title="会议议程" data-index="content" key="content" />
-    <a-table-column title="操作" data-index="action" key="action" />
+  <!-- <fs-upload :before-upload="importSheet" accept=".xlsx,.xls">
+    <fs-button>
+      <upload-outlined></upload-outlined>
+      导入sheet
+    </fs-button>
+  </fs-upload> -->
+  <a-button type="primary" @click="exportSheet">导出sheet</a-button>
+  <a-table :columns="columns" :data-source="data" bordered>
+    <template #bodyCell="{ column, text }">
+      <template v-if="column.dataIndex === 'name'">
+        <a href="javascript:;">{{ text }}</a>
+      </template>
+    </template>
   </a-table>
 </template>
+<script lang="ts" setup>
+import type { TableColumnType } from 'ant-design-vue'
+import XEUtils from 'xe-utils'
+import { read, utils, writeFile } from 'xlsx'
+import dayjs from 'dayjs'
+const sharedOnCell = (_, index) => {
+  if (index === 4) {
+    return { colSpan: 0 }
+  }
+}
 
-<script setup lang="ts">
-import { utils, writeFileXLSX } from "xlsx";
-const raw_data = reactive([
+const data = [
   {
-    date: "2023-11-27",
-    morningOrAfternoon: "上午",
-    theme: "区领导调研工作方案",
-    location: "区政府大楼",
-    inner: "张三、李四",
-    outer: "区领导",
-    content: "调研工作安排",
+    key: '1',
+    name: 'John Brown',
+    age: 32,
+    tel: '0571-22098909',
+    phone: 18889898989,
+    address: 'New York No. 1 Lake Park'
   },
   {
-    date: "2023-11-27",
-    morningOrAfternoon: "上午",
-    theme: "区领导调研工作方案",
-    location: "区政府大楼",
-    inner: "张三、李四",
-    outer: "区领导",
-    content: "调研工作安排",
+    key: '2',
+    name: 'Jim Green',
+    tel: '0571-22098333',
+    phone: 18889898888,
+    age: true,
+    address: 'London No. 1 Lake Park'
   },
   {
-    date: "2023-11-28",
-    morningOrAfternoon: "下午",
-    theme: "区领导调研工作方案",
-    location: "区政府大楼",
-    inner: "张三、李四",
-    outer: "区领导",
-    content: "调研工作安排",
+    key: '3',
+    name: 'Joe Black',
+    age: null,
+    tel: '0575-22098909',
+    phone: 18900010002,
+    address: 'Sidney No. 1 Lake Park'
   },
-]);
+  {
+    key: '4',
+    name: 'Jim Red',
+    age: undefined,
+    tel: '0575-22098909',
+    phone: 18900010002,
+    address: 'London No. 2 Lake Park'
+  },
+  {
+    key: '5',
+    name: 'Jake White',
+    age: 18,
+    tel: '0575-22098909',
+    phone: 18900010002,
+    address: 'Dublin No. 2 Lake Park'
+  }
+]
+
+const columns: TableColumnType[] = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    customCell: (_, index) => ({
+      colSpan: index < 4 ? 1 : 5
+    })
+  },
+  {
+    title: 'Age',
+    dataIndex: 'age',
+    customCell: sharedOnCell
+  },
+  {
+    title: 'Home phone',
+    colSpan: 2,
+    dataIndex: 'tel',
+    customCell: (_, index) => {
+      if (index === 2) {
+        return { rowSpan: 2, colspan: 2 }
+      }
+      // These two are merged into above cell
+      if (index === 3) {
+        return { rowSpan: 0 }
+      }
+      if (index === 4) {
+        return { colSpan: 0 }
+      }
+    }
+  },
+  {
+    title: 'Phone',
+    colSpan: 0,
+    dataIndex: 'phone',
+    customCell: (_, index) => {
+      if (index === 2) {
+        return { rowSpan: 0, colspan: 0 }
+      }
+      // These two are merged into above cell
+      if (index === 3) {
+        return { rowSpan: 0, colspan: 0 }
+      }
+      if (index === 4) {
+        return { colSpan: 0 }
+      }
+    }
+  },
+  {
+    title: 'Address',
+    dataIndex: 'address',
+    customCell: sharedOnCell
+  }
+]
+
 function exportSheet() {
-  /* fetch JSON data and parse */
+  const merges = []
+  let trs = document.querySelectorAll('tr')
+  trs.forEach((tr, rowIndex) => {
+    let children = tr.children
+    for (var i = 0; i < children.length; i++) {
+      let td = children[i]
+      let colspan = Number(td.getAttribute('colspan')) || 1
+      let rowspan = Number(td.getAttribute('rowspan')) || 1
+      if (colspan > 1 || rowspan > 1) {
+        merges.push({ s: { r: rowIndex, col: i }, e: { r: rowIndex + rowspan - 1, col: i + colspan - 1 } })
+      }
+    }
+  })
 
-  /* flatten objects */
-  // const rows = prez.map((row) => ({
-  //   name: row.name.first + " " + row.name.last,
-  //   time: "",
-  //   birthday: row.bio.birthday,
-  // }));
+  let theadTableTh = document.querySelectorAll('.ant-table-thead tr')
+  let tbodyTableTh = document.querySelectorAll('.ant-table-tbody tr.ant-table-row')
+  let tableEl = document.createElement('table')
+  let tbody = document.createElement('tbody')
+  theadTableTh.forEach((el) => tbody.append(el.cloneNode(true)))
+  tbodyTableTh.forEach((el) => tbody.append(el.cloneNode(true)))
+  tableEl.append(tbody)
+  console.log(tableEl)
+  var ws = utils.table_to_sheet(tableEl)
+  ws['!cols'][0] = { wch: 100 }
+  ws['!cols'][1] = { wch: 200 }
+  console.log(ws)
 
-  /* generate worksheet and workbook */
-  const worksheet = utils.json_to_sheet(raw_data);
-  const workbook = utils.book_new();
+  var wb = utils.book_new()
+  utils.book_append_sheet(wb, ws, 'sheet1')
+  writeFile(wb, dayjs().format('YYYY-MM-DD HH:mm:ss') + '.xlsx')
 
-  /* fix headers */
-  utils.sheet_add_aoa(worksheet, [["会议时间", "", "会议主题", "地点", "内部参会人员", "外部参会人员", "会议议程"]], {
-    origin: "A1",
-  });
+  console.log(wb)
+  //   writeFile(wb, new Date().getTime() + '.xlsx')
+}
 
-  /* calculate column width */
-  if (!worksheet["!cols"]) worksheet["!cols"] = [];
-  console.log(worksheet);
-  worksheet["!cols"][0] = { wch: raw_data.reduce((w, r) => Math.max(w, r.date.length), 10) + 1 };
-  worksheet["!cols"][1] = { wch: raw_data.reduce((w, r) => Math.max(w, r.theme.length), 10) + 2 };
+const importSheet = (file) => {
+  const fileReader = new FileReader()
+  // 读取数据
+  fileReader.readAsBinaryString(file)
 
-  // 合并单元格
-  // 设置工作表的记录范围
-  // [列号][行号]，A1 则代表 A 列的第1行
-  // 列数一般是已知的（未知时可以设置为ZZ）
-  // 行数则以 xlsxData 内容的长度结束即可
-  // worksheet["!ref"] = `A1:AI${raw_data.length}`;
-  // s 意为 start ，即开始的单元格
-  // r 是 row ，表示行号，从 0 计起
-  // c 是 col ，表示列号，从 0 计起
-  const merge = [
-    // 纵向合并，范围是第1列的行1到行2
-    { s: { r: 0, c: 0 }, e: { r: 0, c: 1 } },
-    // // 纵向合并，范围是第2列的行1到行2
-    { s: { r: 1, c: 1 }, e: { r: 2, c: 1 } },
-    // // 横向合并，范围是第1行的列3到列5
-    // { s: { r: 0, c: 2 }, e: { r: 0, c: 4 } },
-    // // 横向合并，范围是第1行的列6到列11
-    // { s: { r: 0, c: 5 }, e: { r: 0, c: 10 } },
-    // // 横向合并，范围是第1行的列12到列17
-    // { s: { r: 0, c: 11 }, e: { r: 0, c: 16 } },
-    // // 横向合并，范围是第1行的列18到列23
-    // { s: { r: 0, c: 17 }, e: { r: 0, c: 22 } },
-    // // 横向合并，范围是第1行的列24到列29
-    // { s: { r: 0, c: 23 }, e: { r: 0, c: 28 } },
-    // // 横向合并，范围是第1行的列30到列35
-    // { s: { r: 0, c: 29 }, e: { r: 0, c: 34 } },
-  ];
-
-  for (const key in worksheet) {
-    // 第一行，表头
-    if (key.replace(/[^0-9]/gi, "") === "1") {
-      worksheet[key].s = {
-        fill: {
-          //背景色
-          fgColor: { rgb: "C0C0C0" },
-        },
-        font: {
-          //字体
-          name: "宋体",
-          sz: 12,
-          bold: true,
-        },
-        border: {
-          //边框
-          bottom: {
-            style: "thin",
-            color: "FF000000",
-          },
-        },
-        alignment: {
-          horizontal: "center", //水平居中
-        },
-      };
+  fileReader.onload = function (e) {
+    try {
+      const wb = read(e.target.result, { type: 'binary' })
+      // console.log(wb)
+      // const ws = wb.Sheets[wb.SheetNames[0]]
+      // console.log(ws)
+      // const data = utils.sheet_to_json(ws, { range: 1 }) // header: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+      // console.log(data)
+      let ws = wb.Sheets[wb.SheetNames[0]]
+      // html.value = utils.sheet_to_html(wb.Sheets[wb.SheetNames[0]])
+      console.log(ws)
+    } catch (e) {
+      console.log(e)
     }
   }
-  console.log(worksheet);
-  worksheet["!merges"] = merge;
-
-  utils.book_append_sheet(workbook, worksheet, "Dates");
-
-  /* create an XLSX file and try to save to Presidents.xlsx */
-  writeFileXLSX(workbook, "Presidents.xlsx", { compression: true });
+  return false
 }
 </script>
-<style scoped>
-.btn {
-  width: 120px;
-  height: 32px;
-  background-color: skyblue;
-  border: 1px solid #ccc;
-  color: #fff;
-  cursor: pointer;
-}
-
-.btn:hover {
-  opacity: 0.9;
-}
-</style>
