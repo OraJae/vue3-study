@@ -196,6 +196,14 @@ export default [
                 },
                 component: () => import("@/views/webPage/cover/index.vue"),
             },
+            {
+                path: "posterSearch",
+                name: "posterSearch",
+                meta: {
+                    title: "posterSearch",
+                },
+                component: () => import("@/views/webPage/posterSearch/index.vue"),
+            },
         ],
     },
 ];

@@ -16,22 +16,22 @@ function getExtension(fileName: string) {
   return ext;
 }
 
-export function isImg(fileName: string) {
+ function isImg(fileName: string) {
   const extension = getExtension(fileName);
   return img.includes(extension);
 }
 
-export function isVideo(fileName: string) {
+ function isVideo(fileName: string) {
   const extension = getExtension(fileName);
   return video.includes(extension);
 }
 
-export function isZip(fileName: string) {
+ function isZip(fileName: string) {
   const extension = getExtension(fileName);
   return zip.includes(extension);
 }
 
-export function getFileType(fileName: string) {
+ function getFileType(fileName: string) {
   if (wpsFileType(fileName) === "w") return "word";
   if (wpsFileType(fileName) === "s") return "excel";
   if (wpsFileType(fileName) === "p") return "ppt";
@@ -42,12 +42,12 @@ export function getFileType(fileName: string) {
   return getExtension(fileName);
 }
 
-export function isWpsFile(fileName: string) {
+ function isWpsFile(fileName: string) {
   const extension = getExtension(fileName);
   return [...w, ...s, ...p, ...f].includes(extension);
 }
 
-export function wpsFileType(fileName: string) {
+ function wpsFileType(fileName: string) {
   const extension = getExtension(fileName);
   if (w.includes(extension)) {
     return "w";
@@ -64,12 +64,12 @@ export function wpsFileType(fileName: string) {
   return "";
 }
 
-export function getFileTypeImg(fileName: string) {
+ function getFileTypeImg(fileName: string) {
   const type = getFileType(fileName);
   return new URL(`../assets/imgs/files/${type}.png`, import.meta.url).href;
 }
 
-export function checkImageWH(file, width, height) {
+ function checkImageWH(file, width, height) {
   return new Promise(function (resolve, reject) {
     let fr = new FileReader();
     fr.onload = (e) => {
@@ -90,3 +90,14 @@ export function checkImageWH(file, width, height) {
     fr.readAsDataURL(file);
   });
 }
+
+export {
+  getFileType,
+  getFileTypeImg,
+  checkImageWH,
+  isWpsFile,
+  wpsFileType,
+  isImg,
+  isVideo,
+  isZip,
+};

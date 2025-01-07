@@ -17,10 +17,12 @@
     "@vueuse/core": "^9.1.0",
     "ant-design-vue": "4.x",
     "aws-sdk": "^2.1692.0",
+    "axios": "^0.27.2",
     "enquire.js": "^2.1.6",
     "html-to-image": "^1.11.11",
     "html2json": "^1.0.2",
     "json2html": "^0.0.8",
+    "qs": "^6.13.1",
     "three": "^0.171.0",
     "vant": "^4.8.11",
     "vditor": "^3.8.15",
@@ -36,13 +38,14 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@types/node": "^16.11.12",
     "@vant/auto-import-resolver": "^1.1.0",
-    "@vitejs/plugin-vue": "^5.0.4",
+    "@vitejs/plugin-vue": "^3.0.0",
     "less": "^4.1.3",
     "less-loader": "^11.0.0",
     "unplugin-auto-import": "^0.17.5",
     "unplugin-vue-components": "^0.26.0",
     "unplugin-vue-define-options": "^0.7.1",
-    "vite": "^5.2.0"
+    "vite": "^3.0.0"
   }
 }

@@ -2,7 +2,17 @@ import { message } from "ant-design-vue";
 import { onMounted, onBeforeUnmount } from "vue";
 import { getFileType } from "./file";
 
-export const useLockScroll = () => {
+const blobMap = {
+  word: "application/msword",
+  excel: "application/vnd.ms-excel",
+  ppt: "application/vnd.ms-powerpoint",
+  zip: "application/zip",
+  video: "video/x-msvideo;video/3gpp",
+  pdf: "application/pdf",
+  ttf: "font/ttf", // FIXME:
+};
+
+ const useLockScroll = () => {
   let winX = null;
   let winY = null;
 
@@ -36,7 +46,8 @@ export const useLockScroll = () => {
   };
 };
 
-export function scrollSmooth(targetEl: HTMLElement) {
+// 平滑滚动
+ function scrollSmooth(targetEl: HTMLElement) {
   if (typeof window.getComputedStyle(document.body).scrollBehavior == "undefined") {
     // scrollTo(0, targetEl.offsetTop)
     // IE
@@ -61,7 +72,8 @@ export function scrollSmooth(targetEl: HTMLElement) {
   }
 }
 
-export async function copyToClipboard(str) {
+// 复制文本
+ async function copyToClipboard(str) {
   try {
     if (navigator.clipboard && window.isSecureContext) {
       await navigator.clipboard.writeText(str);
@@ -85,17 +97,9 @@ export async function copyToClipboard(str) {
   }
 }
 
-const blobMap = {
-  word: "application/msword",
-  excel: "application/vnd.ms-excel",
-  ppt: "application/vnd.ms-powerpoint",
-  zip: "application/zip",
-  video: "video/x-msvideo;video/3gpp",
-  pdf: "application/pdf",
-  ttf: "font/ttf", // FIXME:
-};
 
-export function downloadFile(url, fileName) {
+// 下载文件
+ function downloadFile(url, fileName) {
   const type = getFileType(url);
   fetch(url)
     .then((res) => res.blob())
@@ -122,16 +126,15 @@ export function downloadFile(url, fileName) {
     });
 }
 
-export function viewNewsDetail(newsInfo) {
-  console.log("newsInfo", newsInfo);
-  if ((newsInfo.origin == 3 || newsInfo.origin == null) && newsInfo.urlAdress && isUrl(newsInfo.urlAdress)) {
-    window.open(newsInfo.urlAdress);
-    return;
-  }
-
-  window.open(window.location.origin + "/news-detail/" + newsInfo.id);
-}
-
-export function isUrl(url) {
+// 判断是否为url
+ function isUrl(url) {
   return /^(https?:\/\/(([a-zA-Z0-9]+-?)+[a-zA-Z0-9]+\.)+[a-zA-Z]+)(:\d+)?(\/.*)?(\?.*)?(#.*)?$/.test(url);
 }
+
+export {
+  useLockScroll,
+  scrollSmooth,
+  copyToClipboard,
+  downloadFile,
+  isUrl,
+};

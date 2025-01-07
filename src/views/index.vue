@@ -46,6 +46,7 @@ const menuList = ref([
     children: [
       { name: "download", path: "/webPage/download" },
       { name: "emby封面", path: "/webPage/cover" },
+      { name: "海报搜索", path: "/webPage/posterSearch" },
     ],
   },
 ]);
