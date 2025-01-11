@@ -3,7 +3,7 @@
     <a-layout class="container">
         <a-layout-sider width="400" class="side">
 
-            <a-upload v-model:fileList="fileList" name="file" :showUploadList="false" :accept="'.jpg,.png,.jpeg'"
+            <a-upload v-model:fileList="fileList" name="file" :showUploadList="false" :accept="'.jpg,.png,.jpeg,.webp'"
                 multiple :customRequest="customRequest">
                 <a-button>
                     <upload-outlined></upload-outlined>
@@ -226,7 +226,7 @@ function downloadImage() {
         position: absolute;
         top: 50%;
         left: 5%;
-        font-size: 48px;
+        font-size: 42px;
         font-family: Maves;
         transform: translate(0, 60px);
         color: #fff;
@@ -242,7 +242,7 @@ function downloadImage() {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 10px;
-        transform: translate(10%, -10%) rotate(15deg);
+        transform: translate(18%, -10%) rotate(15deg);
 
 
         .cover {

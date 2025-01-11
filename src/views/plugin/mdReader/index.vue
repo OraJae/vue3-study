@@ -33,7 +33,6 @@ import { UnorderedListOutlined } from "@ant-design/icons-vue";
 import Vditor from "vditor";
 import mdFile from "@/assets/files/array.md?raw";
 import enquireJs from "enquire.js";
-import XEUtils from "xe-utils";
 
 // import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 

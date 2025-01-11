@@ -200,7 +200,7 @@ export default [
                 path: "posterSearch",
                 name: "posterSearch",
                 meta: {
-                    title: "posterSearch",
+                    title: "tmdb海报搜索",
                 },
                 component: () => import("@/views/webPage/posterSearch/index.vue"),
             },

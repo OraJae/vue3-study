@@ -1,6 +1,6 @@
 <template>
     <div class="poster-search">
-        <a-input-search class="search-input" v-model:value="keyword" placeholder="搜索电影、剧集、人物" size="large"
+        <a-input-search class="search-input" v-model:value="keyword" placeholder="搜索电影、剧集" size="large"
             @search="onSearch" @pressEnter="onSearch">
             <template #enterButton>
                 <a-button type="primary" :icon="h(SearchOutlined)">搜索</a-button>
@@ -74,7 +74,12 @@ function onSearch() {
     fetch('https://api.themoviedb.org/3/search/multi?' + qs.stringify(params), options)
         .then(res => res.json())
         .then(res =>
-            searchResult.value = res.results
+            searchResult.value = res.results.filter(item => item.media_type !== 'person').map(item => {
+                return {
+                    ...item,
+                    poster_path: item.poster_path || item.profile_path,
+                }
+            })
         ).finally(() => {
             step.value = 0
         })

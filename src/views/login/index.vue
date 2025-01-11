@@ -33,8 +33,6 @@ function login() {
 }
 </script>
 <style lang="less">
-@import url("https://fonts.googleapis.com/css?family=Raleway:400,700");
-
 *,
 *:before,
 *:after {
