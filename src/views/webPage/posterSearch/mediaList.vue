@@ -6,7 +6,7 @@
                 <img :src="'https://image.tmdb.org/t/p/w500' + item.poster_path" class="media-pic" />
                 <div class="media-info">
                     <div class="title">{{ item.title || item.name }}</div>
-                    <div class="overview">{{ item.overview }}</div>
+                    <div class="overview" :title="item.overview">{{ item.overview }}</div>
                 </div>
             </a-flex>
         </a-card>

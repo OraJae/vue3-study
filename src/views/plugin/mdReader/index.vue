@@ -1,61 +1,27 @@
 <template>
   <div :class="['mdReader', { mobile: isSmallScreen }]" ref="mdReader">
-    <div
-      v-if="isSmallScreen"
-      ref="floatBtn"
-      :class="['float-btn', { light: showFloatBtn }]"
-      @click="drawerVisible = true"
-    >
+    <div v-if="isSmallScreen" ref="floatBtn" :class="['float-btn', { light: showFloatBtn }]"
+      @click="drawerVisible = true">
       <UnorderedListOutlined style="font-size: 1em" />
     </div>
 
     <div class="preview" ref="previewElement"></div>
     <div class="outline" ref="outlineElement"></div>
   </div>
-  <a-drawer
-    v-if="isSmallScreen"
-    bodyStyle="padding: 16px 0"
-    forceRender
-    placement="right"
-    :closable="false"
-    width="50%"
-    v-model:open="drawerVisible"
-    :maskClosable="true"
-  >
+  <a-drawer v-if="isSmallScreen" bodyStyle="padding: 16px 0" forceRender placement="right" :closable="false" width="50%"
+    v-model:open="drawerVisible" :maskClosable="true">
     <div ref="mobileOutlineElement"></div>
   </a-drawer>
 </template>
 
 <script setup lang="ts">
 // import fixedMenu from '@/components/fixedMenu'
-// import axios from 'axios'
+import axios from 'axios'
 import { UnorderedListOutlined } from "@ant-design/icons-vue";
 import Vditor from "vditor";
-import mdFile from "@/assets/files/array.md?raw";
+// import mdFile from "@/assets/files/array.md?raw";
 import enquireJs from "enquire.js";
-
-// import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
-
-// 配置 S3 客户端
-// const s3Client = new S3Client({
-//   region: "WuHan",
-//   credentials: {
-//     accessKeyId: "database:FTj3WChc95bdmgdtOto8",
-//     secretAccessKey: "TcYJDjPZ9sUzNOYS2IRQvuHdhqTNxg57",
-//   },
-//   endpoint: "http://192.168.31.139:8010", // 示例: 'https://你的NAS_IP:port'
-//   forcePathStyle: true,
-// });
-
-// const params = {
-//   Bucket: "database",
-//   Key: "note/array.md", // 想要下载的文件名
-// };
-
-// const command = new GetObjectCommand(params);
-// console.log(command);
-// const response = await s3Client.send(command);
-// console.log(response);
+import { getNoteContent } from '@/api/notes'
 
 const outlineElement = ref<HTMLDivElement | null>(null);
 const previewElement = ref<HTMLDivElement | null>(null);
@@ -98,7 +64,23 @@ const handleScroll = () => {
 
 window.addEventListener("scroll", handleScroll);
 
-function renderVditor() {
+// let url = "http://192.168.31.139:8010/note/array.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=database%3AFTj3WChc95bdmgdtOto8%2F20250111%2FWuHan%2Fs3%2Faws4_request&X-Amz-Date=20250111T060157Z&X-Amz-Expires=3600&X-Amz-Signature=3ae3d6f097ab0842b130ccaf53e8ec2c1352cc31a648426e99edb9403d49c8d5&X-Amz-SignedHeaders=host&x-id=GetObject"
+
+// function readMD() {
+//   axios.get(documentData.url).then((res) => {
+//     markedStr = res.data;
+//     renderVditor();
+//   });
+// },
+
+async function renderVditor() {
+  let mdFile
+  await getNoteContent({
+    fileName: 'array.md'
+  }).then((res) => {
+    console.log(res)
+    mdFile = res.data
+  })
   Vditor.preview(previewElement.value, mdFile, {
     mode: "light",
     markdown: {
@@ -114,7 +96,7 @@ function renderVditor() {
       // }
       const menuEl = isSmallScreen.value ? mobileOutlineElement.value : outlineElement.value;
       Vditor.outlineRender(previewElement.value, menuEl);
-      console.log(menuEl.innerText);
+      // console.log(menuEl.innerText);
       if (menuEl.innerText.trim() !== "") {
         menuEl.style.display = "block";
         initOutline();
@@ -140,7 +122,6 @@ function renderVditor() {
   });
 }
 const initOutline = () => {
-  console.log("sdjfnsdhkbsjkb jkbsjkb");
   const headingElements = [];
   Array.from(previewElement.value.children).forEach((item) => {
     if (item.tagName.length === 2 && item.tagName !== "HR" && item.tagName.indexOf("H") === 0) {
@@ -149,7 +130,7 @@ const initOutline = () => {
   });
 
   let toc = [];
-  console.log(previewElement.value);
+  // console.log(previewElement.value);
   window.addEventListener("scroll", () => {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     toc = [];
@@ -192,6 +173,7 @@ onUnmounted(() => {
   background-position: 50%;
   padding-bottom: 100px;
 }
+
 .float-btn {
   opacity: 0.2;
   position: fixed;
@@ -208,20 +190,24 @@ onUnmounted(() => {
   z-index: 10;
   color: #fff;
   transition: all 0.3s linear;
+
   &.light {
     opacity: 1;
   }
 }
+
 .mobile {
   .preview {
     width: 100%;
     padding-right: 16px;
   }
+
   .outline {
     padding-left: 0;
     width: 100%;
   }
 }
+
 .preview {
   // width: calc(100% - 200px);
   padding-right: 220px;
@@ -250,11 +236,13 @@ onUnmounted(() => {
   --toolbar-icon-hover-color: #4285f4;
   --textarea-text-color: #616161;
   --hover-background-color: #f6f8fa;
+
   :deep(li > span.vditor-outline__item--current) {
     border-left: 1px solid #4285f4;
     color: #4285f4;
     background-color: #f6f8fa;
   }
+
   :deep(li > span:hover) {
     color: #4285f4;
     background-color: #f6f8fa;
