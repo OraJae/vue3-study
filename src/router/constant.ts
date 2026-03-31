@@ -204,6 +204,57 @@ export default [
                 },
                 component: () => import("@/views/webPage/posterSearch/index.vue"),
             },
+            {
+                path: "rss",
+                name: "rss",
+                meta: {
+                    title: "tmdb海报搜索",
+                },
+                component: () => import("@/views/webPage/rss/index.vue"),
+            },
+            {
+                path: "boxManage",
+                name: "boxManage",
+                meta: {
+                    title: "盒子管理",
+                },
+                redirect: "/webPage/boxManage/list",
+                component: () => import("@/views/webPage/boxManage/index.vue"),
+                children: [
+                    {
+                        path: "list",
+                        name: "boxList",
+                        meta: {
+                            title: "盒子列表",
+                        },
+                        component: () => import("@/views/webPage/boxManage/list.vue"),
+                    },
+                    {
+                        path: "boxEdit",
+                        name: "boxEdit",
+                        meta: {
+                            title: "盒子编辑",
+                        },
+                        component: () => import("@/views/webPage/boxManage/boxEdit.vue"),
+                    },
+                    {
+                        path: "tagsEdit",
+                        name: "tagsEdit",
+                        meta: {
+                            title: "盒子标签编辑",
+                        },
+                        component: () => import("@/views/webPage/boxManage/tagsEdit.vue"),
+                    },
+                ],
+            },
+            {
+                path: "background",
+                name: "background",
+                meta: {
+                    title: "后台管理",
+                },
+                component: () => import("@/views/webPage/background/index.vue"),
+            }
         ],
     },
 ];

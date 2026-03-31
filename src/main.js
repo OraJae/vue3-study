@@ -19,4 +19,9 @@ app.use(Antd)
 app.use(Vant)
 app.use(LayoutComponent)
 
+// // 全局注册 Element Plus 图标组件
+// for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+//     app.component(key, component)
+// }
+
 app.mount("#app")

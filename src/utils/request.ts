@@ -13,7 +13,7 @@ const request = axios.create({
     timeout: 40000, // 超时时间
     headers: {
         'Content-Type': 'application/json;charset=UTF-8',
-        platForm: 'web',
+        // platForm: 'web',
     },
     paramsSerializer: params => {
         return qs.stringify(params, { arrayFormat: 'brackets' })

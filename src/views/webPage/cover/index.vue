@@ -69,7 +69,6 @@
 import type { UploadChangeParam } from 'ant-design-vue';
 import { VueDraggable } from 'vue-draggable-plus'
 import { Empty } from 'ant-design-vue';
-import { UploadOutlined, CloseOutlined, DownloadOutlined } from '@ant-design/icons-vue';
 import * as htmlToImage from 'html-to-image';
 import { downloadFile } from "@/utils/util";
 

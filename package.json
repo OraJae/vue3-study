@@ -16,6 +16,7 @@
     "@vue-office/pdf": "^2.0.2",
     "@vueuse/core": "^9.1.0",
     "ant-design-vue": "4.x",
+    "@ant-design/icons-vue": "^6.0.0",
     "aws-sdk": "^2.1692.0",
     "axios": "^0.27.2",
     "enquire.js": "^2.1.6",

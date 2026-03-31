@@ -47,6 +47,9 @@ const menuList = ref([
       { name: "download", path: "/webPage/download" },
       { name: "emby封面", path: "/webPage/cover" },
       { name: "海报搜索", path: "/webPage/posterSearch" },
+      { name: "rss地址转换", path: "/webPage/rss" },
+      { name: "盒子管理", path: "/webPage/boxManage" },
+      { name: "后台管理", path: "/webPage/background" },
     ],
   },
 ]);
